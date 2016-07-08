@@ -70,8 +70,36 @@ dec_22_2013_expert = [31, 33, 39, 45, 47,
                      7, 81,
                      5, 15, 65, 69, 71]
 
+# This was a super hard one: 1891 backtracks!
+mar_30_2014 = [55, 61, 69, 79, 77,
+                     53, 75,
+                     47, 31,
+                     45, 17,
+                     5, 7, 9, 13, 15]
+
+# Super easy - just 5 backtracks
+apr_6_2014 = [51, 53, 57, 79, 77,
+                     43, 73,
+                     41, 5,
+                     35, 7,
+                     33, 27, 25, 17, 9]
+
+# Pretty hard - 436 backtracks
+apr_13_2014 = [29, 31, 35, 49, 51,
+                     23, 55,
+                     21, 59,
+                     13, 81,
+                     11, 5, 69, 77, 79]
+
+# Number of backtracks: 1369
+may_18_2014 = [79, 77, 57, 55, 53,
+                     69, 49,
+                     67, 17,
+                     31, 15,
+                     29, 27, 1, 5, 13]
+
 test_games = [game_1, game_2, nov_30_2013_beginner, dec_1_2013_expert, dec_2_2013_advanced, dec_3_2013_intermediate]
-test_games = [dec_22_2013_expert]
+test_games = [may_18_2014]
 
 for game in test_games:
     board = Numbrix.Numbrix(NUM_ROWS, CELL_DIMENSION, game)
