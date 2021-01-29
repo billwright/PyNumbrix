@@ -7,11 +7,11 @@ import Link
 
 chains = [range(1, 31), range(37, 38), range(48, 82)]
 links = Link.create_link_tuples_from_chains(chains)
-print links
+print(links)
 
 chains = [range(5, 31), range(37, 38), range(48, 81)]
 links = Link.create_link_tuples_from_chains(chains)
-print links
+print(links)
 
 NUM_ROWS = 9
 CELL_DIMENSION = 60
@@ -104,14 +104,16 @@ test_games = [may_18_2014]
 for game in test_games:
     board = Numbrix.Numbrix(NUM_ROWS, CELL_DIMENSION, game)
 
-    print board
+    print(board)
 
     board.solve()
 
-    print "\n---------- Results ----------\n"
+    print("\n---------- Results ----------\n")
     if board.is_done():
-        print "SUCCESS! Puzzle is solved"
+        print("SUCCESS! Puzzle is solved")
     else:
-        print "Bummer. Did not solve puzzle. Something went wrong..."
+        print("Bummer. Did not solve puzzle. Something went wrong...")
 
-    print board
+    print(board)
+
+

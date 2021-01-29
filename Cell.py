@@ -22,9 +22,9 @@ class Cell:
 
     def set_value(self, value):
         if (self.value is not None and (value > 81 or value < 1 or type(value) != int)):
-            print "ERROR: trying to set cell", str(self), "to", value
+            print("ERROR: trying to set cell", str(self), "to", value)
         else:
-            print "Setting cell", str(self), "to", value
+            print("Setting cell", str(self), "to", value)
             self.value = value
 
     def reset_value(self, value):

@@ -166,15 +166,15 @@ class Numbrix:
                     difference = math.fabs(one_neighbors[1].get_value() - one_neighbors[0].get_value())
                     min_neighbor_value = min(one_neighbors[1].get_value(), one_neighbors[0].get_value())
                     new_value = int(min_neighbor_value + difference // 2)
-                    print "Cell", cell, "has 2 1-away neighbors and its value should therefore be", new_value
+                    print("Cell", cell, "has 2 1-away neighbors and its value should therefore be", new_value)
                     cell.set_value(new_value)
 
                 if len(unknown_neighbors) == 1:
-                    print "cell", cell, "has one unknown neighbor"
+                    print("cell", cell, "has one unknown neighbor")
                     if len(one_neighbors) == 1 and cell.get_value() != 1 and cell.get_value() != 81:
-                        print "    - and it has just one neighbor one away"
+                        print("    - and it has just one neighbor one away")
                         neighbor_value = cell.one_away_unknown_neighbor_value()
-                        print "        - and the value of the unknown cell is", neighbor_value
+                        print("        - and the value of the unknown cell is", neighbor_value)
                         cell.unknown_neighbor().set_value(neighbor_value)
 
     def fill_forced_until_done(self):
@@ -184,8 +184,8 @@ class Numbrix:
             self.update_possible_values()
             self.fill_forced()
 
-            print "After forced filling:"
-            print self
+            print("After forced filling:")
+            print(self)
 
     def used_values(self):
         used_vals = []
@@ -324,7 +324,7 @@ class Numbrix:
                 self.set_neighbors_for_cell(self.board[row][col], row, col, used_values)
 
     def fill_in_one_unknown_neighbors(self):
-        print "In fill_in_one_unknown_neighbors"
+        print("In fill_in_one_unknown_neighbors")
         for row in range(self.size):
             for col in range(self.size):
                 self.get_cell(row, col).check_for_one_unknown_neighbor_for_cell(row, col)
@@ -346,20 +346,20 @@ class Numbrix:
             smallest_link_paths = smallest_link.find_paths()
             if len(smallest_link_paths) > 0:
                 if len(smallest_link_paths) > 1:
-                    print "I have multiple successful paths - " + str(len(smallest_link_paths)) + " of them"
-                    print "Creating a possible checkpoint and searching for a solvable state from successful paths"
+                    print("I have multiple successful paths - " + str(len(smallest_link_paths)) + " of them")
+                    print("Creating a possible checkpoint and searching for a solvable state from successful paths")
                     new_checkpoint = Checkpoint.Checkpoint(self.get_board_state(), smallest_link_paths)
 
                     self.find_solvable_state_from_checkpoint(new_checkpoint)
 
                     if not new_checkpoint.out_of_paths():
-                        print "SETTING A CHECKPOINT!"
+                        print("SETTING A CHECKPOINT!")
                         self.check_points.append(new_checkpoint)
                 else:
-                    print "I found only one successful path, so I'm taking it"
+                    print("I found only one successful path, so I'm taking it")
                     self.fill_in_link(smallest_link_paths[0])
             else:
-                print "MUST BACK-UP! Found no paths from current board state"
+                print("MUST BACK-UP! Found no paths from current board state")
                 self.backtrack_count += 1
                 last_checkpoint = self.check_points[-1]
 
@@ -376,8 +376,8 @@ class Numbrix:
         while unsolvable_state and not check_point.out_of_paths():
             # Restore board state to decision point
             self.load_state(check_point.get_board_state())
-            print "Rolled back state:"
-            print self
+            print("Rolled back state:")
+            print(self)
 
             # Get the next viable path and check that it is solvable
             chosen_link = check_point.pop_next_path()
@@ -386,15 +386,15 @@ class Numbrix:
             # Fill is forced moves also, as this can make checking for an unsolvable state easier - we find it quicker
             self.fill_forced_until_done()
 
-            print "Trying this link to see if it is solvable:"
-            print self
+            print("Trying this link to see if it is solvable:")
+            print(self)
             unsolvable_state = self.unsolvable_state()
             if unsolvable_state:
-                print "Dang, that wasn't solvable, trying the next one"
+                print("Dang, that wasn't solvable, trying the next one")
                 self.backtrack_count += 1
             else:
-                print "Found solvable state:"
-                print self
+                print("Found solvable state:")
+                print(self)
 
         return unsolvable_state
 

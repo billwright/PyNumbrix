@@ -71,14 +71,14 @@ class Link:
         successful_paths = []
         start = current_path.last_node()
         if depth == 0:
-            print "Testing if this path works: " + str(current_path)
+            print("Testing if this path works: " + str(current_path))
             if start.has_neighbor_with_value(end_value):
                 # Found the end point!
-                print "     Found successful path!"
+                print("     Found successful path!")
                 return [Path.Path(current_path)]    # In a list, since we always return a list of paths
 
             # We failed to find the desired endpoint in the required depth - stop searching
-            print "     This was a dead end..."
+            print("     This was a dead end...")
             return None
 
         for neighbor in start.unknown_neighbors():
@@ -92,7 +92,7 @@ class Link:
             if success_subpaths is not None:
                 successful_paths.extend(success_subpaths)
 
-        print "Done with this path. I found " + str(len(successful_paths)) + " successful paths"
+        print("Done with this path. I found " + str(len(successful_paths)) + " successful paths")
 
         return successful_paths
 
